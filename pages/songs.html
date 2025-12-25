@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Songs</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f2937;
+    }
+
+    .songs-container {
+      width: 100%;
+      max-width: 680px;
+      padding: 40px;
+      animation: fadeIn 1.4s ease;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 26px;
+    }
+
+    /* Scrollable list */
+    .song-list {
+      max-height: 440px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-right: 6px;
+    }
+
+    .song-row {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    }
+
+    .song-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .song-symbol {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      letter-spacing: 4px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: none;
+      background: #dbeafe;
+      color: #1e3a8a;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #bfdbfe;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: #475569;
+    }
+
+    .bar {
+      flex: 1;
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: #93c5fd;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="songs-container">
+    <h1>Songs</h1>
+    <p class="note"><br>
+      🎶🎤    </p>
+
+    <div class="song-list">
+
+      <!-- SONG TEMPLATE (COPY FOR 20+) -->
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">『レオ』 acoustic ver. 優里×Tani Yuuki</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="https://youtu.be/-s8pCoWqkPU?si=Fbrl7uCpUlzrIKI3" alt="Error"></audio>
+      </div>
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">フジテレビ系 木曜劇場「推しの王子様」主題歌</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/【Official】Uru 『Love Song』  フジテレビ系 木曜劇場「推しの王子様」主題歌(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">『あなたがいることで』TBS系 日曜劇場「テセウスの船」主題歌</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/【Official】Uru 『あなたがいることで』TBS系 日曜劇場「テセウスの船」主題歌(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">back number - 水平線</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/back number - 水平線(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">DISH__ (北村匠海) - 猫 _ THE FIRST TAKE</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/DISH__ (北村匠海) - 猫 _ THE FIRST TAKE(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">KEISUKE - 君想い</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/KEISUKE - 君想い（Music Video）(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">LiSA 『炎』 -MUSiC CLip</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/LiSA 『炎』 -MUSiC CLiP-(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">Mrs. GREEN APPLE「点描の唄」</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/Mrs. GREEN APPLE「点描の唄」Official Live Lyric Video(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">Novelbright - ツキミソウ</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/Novelbright - ツキミソウ [Official Music Video](MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">RADWIMPS - カナタハルカ</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/RADWIMPS - カナタハルカ [Official Music Video](MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">RADWIMPS - 愛にできることはまだあるかい</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/RADWIMPS - 愛にできることはまだあるかい [Official Music Video](MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">RADWIMPS - 正解</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/RADWIMPS - 正解 [Official Music Video](MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">SEKAI NO OWARI「silent」</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/SEKAI NO OWARI「silent」(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">SEKAI NO OWARI「サザンカ」</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/SEKAI NO OWARI「サザンカ」(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">SEKAI NO OWARI「琥珀」</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/SEKAI NO OWARI「琥珀」(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">Soreo Aito Yobunara</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/Soreo Aito Yobunara(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">Watashi</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/Watashi(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="song-row">
+        <div class="song-top">
+          <div class="song-symbol">スパークル [original ver.] -Your name. Music Video edition- 予告編 from new album「人間開花」初回盤DVD</div>
+          <div class="controls">
+            <button class="btn back">-10</button>
+            <button class="btn play">Play</button>
+            <button class="btn forward">10+</button>
+          </div>
+        </div>
+
+        <div class="progress">
+          <span class="current">0:00</span>
+          <div class="bar"><span></span></div>
+          <span class="duration">0:00</span>
+        </div>
+
+        <audio src="songs/スパークル [original ver.] -Your name. Music Video edition- 予告編 from new album「人間開花」初回盤DVD(MP3_320K).mp3"></audio>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- ADD MORE song-row BLOCKS BELOW -->
+
+    </div>
+  </div>
+
+  <script>
+    const rows = document.querySelectorAll('.song-row');
+    let currentAudio = null;
+    let currentPlayBtn = null;
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    rows.forEach(row => {
+      const audio = row.querySelector('audio');
+      const playBtn = row.querySelector('.play');
+      const backBtn = row.querySelector('.back');
+      const forwardBtn = row.querySelector('.forward');
+      const current = row.querySelector('.current');
+      const duration = row.querySelector('.duration');
+      const bar = row.querySelector('.bar span');
+
+      audio.addEventListener('loadedmetadata', () => {
+        duration.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        current.textContent = formatTime(audio.currentTime);
+        bar.style.width = (audio.currentTime / audio.duration) * 100 + '%';
+      });
+
+      playBtn.addEventListener('click', () => {
+        if (currentAudio && currentAudio !== audio) {
+          currentAudio.pause();
+          currentPlayBtn.textContent = 'Play';
+        }
+
+        if (audio.paused) {
+          audio.play();
+          playBtn.textContent = 'Pause';
+          currentAudio = audio;
+          currentPlayBtn = playBtn;
+        } else {
+          audio.pause();
+          playBtn.textContent = 'Play';
+        }
+      });
+
+      backBtn.addEventListener('click', () => {
+        audio.currentTime = Math.max(0, audio.currentTime - 10);
+      });
+
+      forwardBtn.addEventListener('click', () => {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+      });
+    });
+  </script>
+
+</body>
+</html>
