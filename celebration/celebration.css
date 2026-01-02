@@ -1,0 +1,138 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* BODY */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #1f2937;
+}
+
+/* ROOM BACKGROUND */
+.room-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.88),
+      rgba(255, 255, 255, 0.88)
+    ),
+    url("https://images.unsplash.com/photo-1524758631624-e2822e304c36");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ROOM CONTAINER */
+.celebration-room {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* MAIN CARD */
+.celebration-card {
+  max-width: 760px;
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 30px;
+
+  padding: 42px 36px;
+
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* TITLE */
+.celebration-title {
+  font-size: 2rem;
+  margin-bottom: 28px;
+  color: #1f2937;
+}
+
+/* SCENE CONTAINER */
+.scene {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+/* CAKE */
+.cake-area {
+  width: 180px;
+}
+
+.cake-area img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* CAT */
+.cat-area {
+  width: 210px;
+}
+
+.cat-area img {
+  width: 100%;
+  border-radius: 22px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* MESSAGE (FIXED VISIBILITY) */
+.celebration-message {
+  font-size: 1.1rem;
+  color: #1f2937;
+  line-height: 1.7;
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+
+/* BUTTON */
+.back-btn {
+  padding: 10px 30px;
+  border-radius: 999px;
+  border: none;
+
+  background: #fbcfe8;
+  color: #831843;
+
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .celebration-card {
+    padding: 34px 24px;
+  }
+
+  .scene {
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .cake-area,
+  .cat-area {
+    width: 75%;
+  }
+
+  .celebration-title {
+    font-size: 1.6rem;
+  }
+
+}
