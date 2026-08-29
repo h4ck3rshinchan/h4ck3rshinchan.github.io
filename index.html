@@ -1,81 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday!🥳</title>
-  <link rel="icon" href="heart.svg">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        min-height: 100%;
+    }
+
+    body {
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.55), transparent 28%),
+            radial-gradient(circle at 85% 80%, rgba(190, 220, 255, 0.55), transparent 30%),
+            linear-gradient(135deg, #fff7f8, #f7f4ff);
+    }
+
+    /* BACKGROUND PARTICLES */
+
+    #particles {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .particle {
+        position: absolute;
+        bottom: -50px;
+        border-radius: 50%;
+        animation: floatUp linear infinite;
+        opacity: 0.55;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        to {
+            transform: translateY(-115vh) rotate(360deg);
+        }
+    }
+
+    /* MAIN CARD */
+
+    .card {
+        width: min(90vw, 680px);
+        min-height: 620px;
+        position: relative;
+        z-index: 2;
+        padding: 50px 30px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 32px;
+        box-shadow:
+            0 25px 70px rgba(70, 40, 60, 0.13),
+            0 5px 20px rgba(0, 0, 0, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    /* CAT */
+
+    .cat-container {
+        width: 180px;
+        height: 145px;
+        margin: 0 auto 25px;
+        position: relative;
+    }
+
+    .cat-head {
+        width: 145px;
+        height: 112px;
+        background: #f5a04f;
+        border-radius: 48% 48% 45% 45%;
+        position: absolute;
+        left: 17px;
+        top: 25px;
+        z-index: 2;
+    }
+
+    .ear {
+        width: 55px;
+        height: 58px;
+        background: #f5a04f;
+        position: absolute;
+        top: 3px;
+        z-index: 1;
+    }
+
+    .ear-left {
+        left: 18px;
+        clip-path: polygon(0 0, 100% 25%, 25% 100%);
+    }
+
+    .ear-right {
+        right: 18px;
+        clip-path: polygon(100% 0, 0 25%, 75% 100%);
+    }
+
+    .eye {
+        width: 13px;
+        height: 19px;
+        background: #292323;
+        border-radius: 50%;
+        position: absolute;
+        top: 62px;
+        z-index: 3;
+    }
+
+    .eye-left {
+        left: 53px;
+    }
+
+    .eye-right {
+        right: 52px;
+    }
+
+    .nose {
+        width: 12px;
+        height: 9px;
+        background: #e7787f;
+        border-radius: 50%;
+        position: absolute;
+        top: 79px;
+        left: 66px;
+        z-index: 4;
+    }
+
+    .mouth-left,
+    .mouth-right {
+        position: absolute;
+        width: 15px;
+        height: 10px;
+        border-bottom: 2px solid #4b3434;
+        top: 86px;
+        z-index: 4;
+    }
+
+    .mouth-left {
+        left: 53px;
+        border-radius: 0 0 0 15px;
+    }
+
+    .mouth-right {
+        right: 53px;
+        border-radius: 0 0 15px 0;
+    }
+
+    .heart {
+        position: absolute;
+        right: -2px;
+        top: 0;
+        font-size: 58px;
+        color: #ef4f72;
+        transform: rotate(-12deg);
+        animation: heartbeat 1.2s infinite;
+        z-index: 5;
+        text-shadow: 0 5px 10px rgba(239, 79, 114, 0.18);
+    }
+
+    @keyframes heartbeat {
+        0%, 100% {
+            transform: rotate(-12deg) scale(1);
+        }
+
+        50% {
+            transform: rotate(-12deg) scale(1.15);
+        }
+    }
+
+    /* QUESTION */
+
+    h1 {
+        font-size: clamp(32px, 6vw, 50px);
+        line-height: 1.15;
+        color: #29242a;
+        margin: 10px auto 40px;
+        max-width: 600px;
+    }
+
+    .name {
+        color: #e84468;
+    }
+
+    .buttons {
+        min-height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    button {
+        border: none;
+        font-family: inherit;
+        font-size: 21px;
+        font-weight: bold;
+        padding: 18px 48px;
+        border-radius: 16px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    button:active {
+        transform: scale(0.97);
+    }
+
+    #yesBtn {
+        color: white;
+        background: linear-gradient(135deg, #ed416c, #c91e4b);
+        box-shadow: 0 10px 25px rgba(210, 32, 82, 0.28);
+    }
+
+    #noBtn {
+        color: #494148;
+        background: #f3eef1;
+        position: relative;
+        z-index: 20;
+    }
+
+    .hint {
+        min-height: 28px;
+        margin-top: 15px;
+        font-size: 17px;
+        color: #9a6975;
+        font-style: italic;
+        transition: opacity 0.2s ease;
+    }
+
+    /* SUCCESS PAGE */
+
+    #successPage {
+        display: none;
+        animation: pageAppear 0.6s ease;
+    }
+
+    @keyframes pageAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .success-title {
+        color: #df315d;
+        margin-bottom: 12px;
+    }
+
+    .success-text {
+        font-size: clamp(19px, 4vw, 25px);
+        color: #5d5158;
+        margin-bottom: 25px;
+    }
+
+    /* GIF AREA */
+
+    .gif-box {
+        width: 100%;
+        max-width: 430px;
+        height: 310px;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .love-gif {
+        display: none;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 18px;
+    }
+
+    .love-gif.active {
+        display: block;
+        animation: gifAppear 0.5s ease;
+    }
+
+    @keyframes gifAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.92);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .gif-counter {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #ad7b87;
+    }
+
+    /* CONFETTI */
+
+    .confetti {
+        position: fixed;
+        top: -50px;
+        z-index: 9999;
+        pointer-events: none;
+        animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+        to {
+            transform:
+                translateY(115vh)
+                rotate(720deg);
+        }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 550px) {
+        .card {
+            width: 92vw;
+            min-height: 570px;
+            padding: 35px 18px;
+            border-radius: 26px;
+        }
+
+        .cat-container {
+            transform: scale(0.9);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 17px 30px;
+        }
+
+        .buttons {
+            gap: 10px;
+        }
+
+        .gif-box {
+            height: 280px;
+        }
+    }
+</style>
 </head>
+
 <body>
 
-  <!-- Background -->
-  <div class="bg-image"></div>
-  <!-- Falling petals -->
-  <div class="petals"></div>
-  <!-- Main content -->
-  <div class="page-content">
-  <!-- Row for two cards -->
-  <div class="content-row">
-    <!-- Secret message -->
-    <div class="content-card">
-        <h2>Secret message</h2>
-        <div class="card-image">
-          <img
-            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131"
-            alt="Cute cat"
-          />
+<!-- FLOATING BACKGROUND -->
+<div id="particles"></div>
+
+
+<!-- MAIN CARD -->
+<main class="card">
+
+    <!-- QUESTION PAGE -->
+    <section class="page" id="questionPage">
+
+        <div class="cat-container">
+
+            <div class="heart">♥</div>
+
+            <div class="ear ear-left"></div>
+            <div class="ear ear-right"></div>
+
+            <div class="cat-head">
+
+                <div class="eye eye-left"></div>
+                <div class="eye eye-right"></div>
+
+                <div class="nose"></div>
+
+                <div class="mouth-left"></div>
+                <div class="mouth-right"></div>
+
+            </div>
+
         </div>
-             <button class="secret-btn" id="secretBtn">
-              Click me
+
+
+        <!-- CHANGE THE NAME AND QUESTION HERE -->
+        <h1>
+            <span class="name">Nirali</span>,
+            will you be my girlfriend?
+        </h1>
+
+
+        <div class="buttons">
+
+            <button id="yesBtn">
+                Yes
             </button>
-      </div>
-      <!-- Celebration -->
-      <div class="celebration">
-        <h2 class="celebration-title">
-          Celebration
-        </h2>
-        <div class="celebration-image">
-          <img
-            src="https://images.unsplash.com/photo-1511044568932-338cba0ad803"
-            alt="Happy cat"
-          />
+
+            <button id="noBtn">
+                No
+            </button>
+
         </div>
-        <button class="celebrate-btn" id="celebrateBtn">
-          Click me
-        </button>
-      </div>
-    </div>
-  </div>
-
-<!-- New card div -->
-    <div class="new-card">
-       <h2 class="new-card-title">
-          Code:
-      </h2>
-    <div class="new-card-content">
-    </div>
-      <button class="new-card-btn" id="newCardBtn">
-        Click me
-     </button>
-  </div>
 
 
-<!-- Floating container -->
-  <div class="container">
-    <div class="container-image">
-      <img
-        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba"
-        alt="Playful kitten"
-      />
-    </div>
-    <div class="text">
-      Old site
-    </div>
-    <button class="btn" id="goBtn">
-      View
-    </button>
-  </div>
-  <script src="script.js"></script>
+        <p class="hint" id="hint">
+            No seems a bit shy
+        </p>
+
+    </section>
+
+
+    <!-- YES PAGE -->
+    <section class="page" id="successPage">
+
+        <h1 class="success-title">
+            Yayy! You said YES!
+        </h1>
+
+        <p class="success-text">
+            Knew you'd say yes
+        </p>
+
+
+        <!-- GIF SEQUENCE -->
+        <div class="gif-box">
+
+            <img
+                class="love-gif active"
+                src="thumper.gif"
+                alt="Thumper"
+            >
+
+            <img
+                class="love-gif"
+                src="sweet-house.gif"
+                alt="Sweet House"
+            >
+
+            <img
+                class="love-gif"
+                src="milk-mocha.gif"
+                alt="Milk and Mocha Bear"
+            >
+
+            <img
+                class="love-gif"
+                src="peach-goma.gif"
+                alt="Peach and Goma"
+            >
+
+            <img
+                class="love-gif"
+                src="peter-lotta.gif"
+                alt="Peter and Lotta Embracing"
+            >
+
+        </div>
+
+
+        <p class="gif-counter" id="gifCounter">
+            1 / 5
+        </p>
+
+    </section>
+
+</main>
+
+
+<script>
+
+    /* ================================
+       BACKGROUND PARTICLES
+    ================================= */
+
+    const particlesContainer =
+        document.getElementById("particles");
+
+    const particleSymbols =
+        ["♥", "♡", "✦", "•"];
+
+    for (let i = 0; i < 28; i++) {
+
+        const particle =
+            document.createElement("span");
+
+        particle.className = "particle";
+
+        particle.textContent =
+            particleSymbols[
+                Math.floor(
+                    Math.random() *
+                    particleSymbols.length
+                )
+            ];
+
+        particle.style.left =
+            Math.random() * 100 + "vw";
+
+        particle.style.fontSize =
+            (Math.random() * 18 + 8) + "px";
+
+        particle.style.animationDuration =
+            (Math.random() * 10 + 8) + "s";
+
+        particle.style.animationDelay =
+            (Math.random() * -15) + "s";
+
+        particle.style.color =
+            Math.random() > 0.5
+                ? "#f2a1b4"
+                : "#b7a4e8";
+
+        particlesContainer.appendChild(particle);
+    }
+
+
+    /* ================================
+       NO BUTTON
+    ================================= */
+
+    const noBtn =
+        document.getElementById("noBtn");
+
+    const hint =
+        document.getElementById("hint");
+
+    let noAttempts = 0;
+
+    const noMessages = [
+        "No seems a bit shy",
+        "Hey, where are you going?",
+        "You can't escape that easily",
+        "Are you sure?",
+        "Wrong button",
+        "Just say yes already",
+        "Okay... last chance",
+        "Still trying?"
+    ];
+
+
+    function moveNoButton() {
+
+        noAttempts++;
+
+        const messageIndex =
+            Math.min(
+                noAttempts,
+                noMessages.length - 1
+            );
+
+        hint.style.opacity = "0";
+
+        setTimeout(() => {
+
+            hint.textContent =
+                noMessages[messageIndex];
+
+            hint.style.opacity = "1";
+
+        }, 150);
+
+
+        noBtn.style.position = "fixed";
+
+        const buttonWidth =
+            noBtn.offsetWidth;
+
+        const buttonHeight =
+            noBtn.offsetHeight;
+
+        const padding = 15;
+
+        const maxX =
+            window.innerWidth -
+            buttonWidth -
+            padding;
+
+        const maxY =
+            window.innerHeight -
+            buttonHeight -
+            padding;
+
+
+        const randomX =
+            Math.max(
+                padding,
+                Math.random() *
+                (maxX - padding)
+            );
+
+        const randomY =
+            Math.max(
+                padding,
+                Math.random() *
+                (maxY - padding)
+            );
+
+
+        noBtn.style.left =
+            randomX + "px";
+
+        noBtn.style.top =
+            randomY + "px";
+
+        noBtn.style.zIndex = "100";
+    }
+
+
+    /* Desktop: move before clicking */
+    noBtn.addEventListener(
+        "mouseenter",
+        moveNoButton
+    );
+
+
+    /* Mobile: move when touched */
+    noBtn.addEventListener(
+        "touchstart",
+        function(event) {
+
+            event.preventDefault();
+
+            moveNoButton();
+
+        },
+        { passive: false }
+    );
+
+
+    /* ================================
+       YES BUTTON
+    ================================= */
+
+    const yesBtn =
+        document.getElementById("yesBtn");
+
+    const questionPage =
+        document.getElementById("questionPage");
+
+    const successPage =
+        document.getElementById("successPage");
+
+
+    yesBtn.addEventListener(
+        "click",
+        function() {
+
+            /* Hide No button if it escaped */
+            noBtn.style.display = "none";
+
+            questionPage.style.display = "none";
+
+            successPage.style.display = "block";
+
+            startGifSequence();
+
+            createConfetti();
+
+        }
+    );
+
+
+    /* ================================
+       GIF SEQUENCE
+    ================================= */
+
+    const gifs =
+        document.querySelectorAll(".love-gif");
+
+    const gifCounter =
+        document.getElementById("gifCounter");
+
+    let currentGif = 0;
+
+    let gifInterval = null;
+
+
+    function showGif(index) {
+
+        gifs.forEach(function(gif) {
+
+            gif.classList.remove("active");
+
+        });
+
+
+        gifs[index].classList.add("active");
+
+
+        gifCounter.textContent =
+            (index + 1) +
+            " / " +
+            gifs.length;
+    }
+
+
+    function startGifSequence() {
+
+        /* Prevent multiple intervals */
+        if (gifInterval !== null) {
+
+            clearInterval(gifInterval);
+
+        }
+
+        currentGif = 0;
+
+        showGif(currentGif);
+
+
+        /* Each GIF stays for 4 seconds */
+        gifInterval =
+            setInterval(function() {
+
+                currentGif++;
+
+                if (
+                    currentGif >= gifs.length
+                ) {
+
+                    currentGif = 0;
+
+                }
+
+                showGif(currentGif);
+
+            }, 4000);
+    }
+
+
+    /* ================================
+       CONFETTI CELEBRATION
+    ================================= */
+
+    function createConfetti() {
+
+        const symbols = [
+            "♥",
+            "♡",
+            "✦",
+            "💕",
+            "💗",
+            "✨"
+        ];
+
+
+        for (let i = 0; i < 90; i++) {
+
+            const confetti =
+                document.createElement("div");
+
+            confetti.className =
+                "confetti";
+
+            confetti.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+
+            confetti.style.left =
+                Math.random() *
+                100 + "vw";
+
+
+            confetti.style.fontSize =
+                (Math.random() * 18 + 12) +
+                "px";
+
+
+            confetti.style.animationDuration =
+                (Math.random() * 3 + 2) +
+                "s";
+
+
+            confetti.style.animationDelay =
+                (Math.random() * 0.8) +
+                "s";
+
+
+            document.body.appendChild(
+                confetti
+            );
+
+
+            setTimeout(
+                function() {
+
+                    confetti.remove();
+
+                },
+                6500
+            );
+
+        }
+    }
+
+</script>
+
 </body>
 </html>
